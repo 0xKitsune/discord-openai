@@ -1,0 +1,30 @@
+[package]
+name = "discord-openai"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+description = "Discord x OpenAI bot"
+readme = "README.md"
+homepage = "https://github.com/0xKitsune/discord-openai"
+repository = "https://github.com/0xKitsune/discord-openai"
+keywords = ["openai", "discord", "chatgpt", "gpt"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+async-trait = "0.1.63"
+clap = {version="4.1.4", features = ["derive"]}
+eyre = "0.6.8"
+futures = "0.3.25"
+openairs = "0.1.1"
+serenity = "0.11.5"
+thiserror = "1.0.38"
+tokio = { version = "1.24.2", features = ["macros", "rt-multi-thread"] }
+tracing = "0.1.37"
+tracing-subscriber = {version = "0.3.16", features = ["env-filter", "fmt"]}
+
+
+
+[[bin]]
+path = "bin/discord-openai.rs"
+name = "discord-openai"
