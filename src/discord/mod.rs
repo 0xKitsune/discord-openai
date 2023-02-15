@@ -74,24 +74,45 @@ impl Handler {
 impl EventHandler for Handler {
     async fn interaction_create(&self, ctx: Context, interaction: Interaction) {
         if let Interaction::ApplicationCommand(command) = interaction {
-            let content = match command.data.name.as_str() {
+            match command.data.name.as_str() {
                 "davinci" => {
+                    //Send defer message to indicate the bot is thinking
                     if let Err(why) = self.send_defer_message(&ctx, &command).await {
                         println!("Something went wrong: {why}");
                     }
 
-                    commands::davinci::run(&command.data.options, self.open_ai_client.clone()).await
-                }
-                "ping" => commands::ping::run(&command.data.options),
-                _ => "not implemented :(".to_string(),
-            };
+                    //Generate the response content
+                    let content =
+                        commands::davinci::run(&command.data.options, self.open_ai_client.clone())
+                            .await;
 
-            if let Err(why) = command
-                .create_followup_message(&ctx.http, |response| response.content(content))
-                .await
-            {
-                println!("Cannot respond to slash command: {why}");
-            }
+                    //Send a follow up message with the response content
+                    if let Err(why) = command
+                        .create_followup_message(&ctx.http, |response| response.content(content))
+                        .await
+                    {
+                        println!("Cannot respond to slash command: {why}");
+                    }
+                }
+                "ping" => {
+                    let content = commands::ping::run(&command.data.options);
+
+                    if let Err(why) = command
+                        .create_interaction_response(&ctx.http, |response| {
+                            response
+                                .kind(InteractionResponseType::ChannelMessageWithSource)
+                                .interaction_response_data(|message| message.content(content))
+                        })
+                        .await
+                    {
+                        println!("Cannot respond to slash command: {}", why);
+                    }
+                }
+
+                other => {
+                    println!("Slash command unrecognized: {}", other)
+                }
+            };
         }
     }
 
