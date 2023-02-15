@@ -28,9 +28,8 @@ Bot Permissions:
 
 Once these permissions are enabled, you can [invite the bot to your server](https://discordpy.readthedocs.io/en/stable/discord.html#inviting-your-bot). Once the bot has successfully joined the server, all that is left is to start up `discord-openai`!
 
-## Running with Cargo
 
-### Installing `discord-openai`
+## Installing `discord-openai`
 
 First, make sure that you have [Rust installed](https://www.rust-lang.org/tools/install) which will allow you to install / compile the program. Once Rust is installed you can install `discord-openai` with `cargo` (the  Rust package manager) or directly from the source code. To install via cargo, simply enter the following command in your terminal.
 
@@ -49,7 +48,7 @@ cargo install --path .
 Congratulations, now everything is installed.
 
 
-### Running the program
+## Running the program
 
 
 
