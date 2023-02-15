@@ -74,7 +74,12 @@ After starting the program, you should see `your_bots_name_here is connected!` i
 
 If you are using environment variables, set environment variables within the `Dockerfile` called `DISCORD_OPENAI_BOT_TOKEN` for the bot token and `OPENAI_API_KEY` for the api key.
 
-To run with docker, simply build the image with `sudo docker -t <your-image-name> .`. Then you can run the container with `sudo docker run -t <your-image-name>`. 
+After adding environment variables to the Dockerfile, to run the program with docker, simply build the image and run the container with the following command.
+
+ ```
+ sudo docker -t <your-image-name> . 
+ sudo docker run -t <your-image-name>
+```
 
 If you choose not to set environment variables in the `Dockerfile`, you can pass the bot token and API key as command line arguments when starting the container, as seen below.
 
