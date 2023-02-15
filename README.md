@@ -86,12 +86,12 @@ sudo docker run -t <your-image-name> --openai_api_key <api_key> --bot_token <tok
 You can use this Dockerfile to deploy on any machine or a cloud provider that supports Docker.
 
 
-### Slash Command Usage
+## Slash Command Usage
 Once `discord-openai` is up and running, you can use the `/davinci` slash command to ask questions, generate code snippets and anything else you can think of. Right now, `discord-openai` uses OpenAI's `text-davinci-003` model, however other models will be added as additional slash commands, including ChatGPT once it is available.
 
 You can also use the `/ping` slash command to check if `discord-ai` is up and running at anytime.
 
-### Current Limitations
+## Current Limitations
 
 - As mentioned previously, `discord-openai` uses the `text-davinci-003` model. In the future, more models will be integrated into the program as they are released from OpenAI
 
